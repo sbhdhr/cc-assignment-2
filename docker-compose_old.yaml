@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+    invdata1:
+        build:
+            context: .
+            dockerfile: container-invdata.dockerfile
+        container_name: invdata1
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+    cartdata1:
+        image: "sbhdhr/ubuntu-python"
+        container_name: cartdata1
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+    restsrv1:
+        build:
+            context: .
+            dockerfile: container-rest_server.dockerfile
+        container_name: restsrv1
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+    gateway1:
+        build:
+            context: .
+            dockerfile: container-gateway.dockerfile
+        container_name: gateway1
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+    userterm1:
+        build:
+            context: .
+            dockerfile: container-rest_client.dockerfile
+        container_name: client1
+        restart: unless-stopped
+        tty: true
+    userterm2:
+        build:
+            context: .
+            dockerfile: container-rest_client.dockerfile
+        container_name: client2
+        restart: unless-stopped
+        tty: true
+networks:
+    net1:
+        driver: bridge

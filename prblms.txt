@@ -1,0 +1,4 @@
+
+find alt to log into container
+
+docker container exec -it <ct_name> /bin/bash
