@@ -1,5 +1,5 @@
 FROM sbhdhr/ubuntu-python
 
 
-COPY inv.dat /inv.dat
+COPY inv-data.json /inv-data.json
 
