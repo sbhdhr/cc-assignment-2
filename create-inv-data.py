@@ -1,7 +1,10 @@
 from openpyxl import load_workbook
+import random
+from datetime import datetime
+import json
+
+
 wb2 = load_workbook('sample.xlsx')
-
-
 worksheet1 = wb2['Sheet1'] # one way to load a worksheet
 
 items = []
@@ -17,17 +20,10 @@ items = set(items)
 
 data= {}
 
-import random
-from datetime import datetime
-
 for i in items:
     data[i]=(random.randint(5,15),datetime.timestamp(datetime.now()))
     
 print(data)
 
-
-import json
-
-
 with open('inv-data.json', 'w') as fp:
-    json.dump(data, fp)
+    json.dump(data, fp,indent = 4, sort_keys=True)

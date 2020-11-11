@@ -47,7 +47,7 @@ def update():
      k=request.args['key']
      v=request.args['val']
      if k in data.keys():
-         data[k]=(int(v),datetime.timestamp(datetime.now()))
+         data[k]=(v,datetime.timestamp(datetime.now()))
          flush_data()
          return "true"
      else:
