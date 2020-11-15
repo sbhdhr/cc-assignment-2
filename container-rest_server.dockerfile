@@ -1,6 +1,6 @@
 FROM sbhdhr/ubuntu-python
 
-
+#COPY HelloKazoo.py /HelloKazoo.py
 COPY rest_server.py /rest_server.py
 COPY requirements.txt /requirements.txt
 

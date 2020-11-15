@@ -23,6 +23,19 @@ services:
         container_name: restsrv1
         restart: unless-stopped
         tty: true
+        ports:
+            - 3001:3001
+        networks:
+            net1:
+    restsrv2:
+        build:
+            context: .
+            dockerfile: container-rest_server.dockerfile
+        container_name: restsrv2
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 3002:3001
         networks:
             net1:
     gateway1:
@@ -52,6 +65,17 @@ services:
         tty: true
         networks:
             net1:
+    zoo1:
+        image: zookeeper
+        restart: unless-stopped
+        hostname: zoo1
+        ports:
+            - 2181:2181
+        networks:
+            net1:
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 
 networks:
     net1:
         driver: bridge
