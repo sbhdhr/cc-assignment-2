@@ -10,10 +10,14 @@ services:
         networks:
             net1:
     cartdata1:
-        image: "sbhdhr/ubuntu-python"
+        build:
+            context: .
+            dockerfile: container-cartdata.dockerfile
         container_name: cartdata1
         restart: unless-stopped
         tty: true
+        ports:
+            - 4001:4001
         networks:
             net1:
     restsrv1:
