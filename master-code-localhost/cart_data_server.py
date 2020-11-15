@@ -47,7 +47,8 @@ def add():
      k=request.args['item']
      v=request.args['quant']
      if uid in data.keys():
-         data[uid]=data[uid].update({k:int(v)}) 
+         cartdic = data[uid]
+         cartdic.update({k:int(v)}) 
      else:
          data[uid]={k:int(v)}
      flush_data()
@@ -82,6 +83,16 @@ def delete():
             return "true"
          else:
             return "false"
+     else:
+       return "false"
+   
+@app.route('/deletecart', methods=['DELETE'])
+def delete_cart():
+     uid=request.args['id']
+     if uid in data.keys():
+        data.pop(uid) 
+        flush_data()
+        return "true"
      else:
        return "false"
     
