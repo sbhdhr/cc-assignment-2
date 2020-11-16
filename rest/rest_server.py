@@ -29,7 +29,7 @@ if LOCAL_FLAG:
     
 else:
     invdata = ["http://invdata1:3000","http://invdata2:3000"]
-    cartdata = ["http://cartdata1:3000","http://cartdata2:3000"]
+    cartdata = ["http://cartdata1:4000","http://cartdata2:4000"]
     zk = KazooClient(hosts='zoo1:2181')
     zk.start()
     lock = zk.Lock("/lockpath/inv", "1234")
