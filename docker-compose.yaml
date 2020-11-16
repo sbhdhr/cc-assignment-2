@@ -7,6 +7,19 @@ services:
         container_name: invdata1
         restart: unless-stopped
         tty: true
+        ports:
+            - 3001:3000
+        networks:
+            net1:
+    invdata2:
+        build:
+            context: .
+            dockerfile: container-invdata.dockerfile
+        container_name: invdata2
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 3002:3000
         networks:
             net1:
     cartdata1:
@@ -17,7 +30,18 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - 4001:4001
+            - 4001:4000
+        networks:
+            net1:
+    cartdata2:
+        build:
+            context: .
+            dockerfile: container-cartdata.dockerfile
+        container_name: cartdata2
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 4002:4000
         networks:
             net1:
     restsrv1:
@@ -28,7 +52,7 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - 3001:3001
+            - 5001:5000
         networks:
             net1:
     restsrv2:
@@ -39,7 +63,7 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - 3002:3001
+            - 5002:5000
         networks:
             net1:
     gateway1:

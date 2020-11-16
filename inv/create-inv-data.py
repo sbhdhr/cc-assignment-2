@@ -21,7 +21,8 @@ items = set(items)
 data= {}
 
 for i in items:
-    data[i]=(random.randint(5,15),datetime.timestamp(datetime.now()))
+    cartdict={'quan':random.randint(5,15),'time':datetime.timestamp(datetime.now())}
+    data[i]=cartdict
     
 print(data)
 

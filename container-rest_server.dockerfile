@@ -1,7 +1,7 @@
 FROM sbhdhr/ubuntu-python
 
 #COPY HelloKazoo.py /HelloKazoo.py
-COPY rest_server.py /rest_server.py
+COPY rest/rest_server.py /rest_server.py
 COPY requirements.txt /requirements.txt
 
 RUN pip3 install -r requirements.txt

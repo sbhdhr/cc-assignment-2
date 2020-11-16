@@ -1,8 +1,6 @@
 import flask
 from flask import request
 import json
-import time
-from threading import Thread 
 
 
 app = flask.Flask(__name__)
@@ -24,11 +22,6 @@ def flush_data():
     with open('cart-data.json', 'w') as fp:
         json.dump(data, fp,indent = 4, sort_keys=True)
         
-        
-def refresh_thread(n): 
-    refresh_data()
-    time.sleep(n) 
-
 
 @app.route('/getallcarts', methods=['GET'])
 def getall():
@@ -36,9 +29,22 @@ def getall():
 
 
 @app.route('/getcartfor', methods=['GET'])
-def get_prod():
+def get_cart_for():
     k=request.args['id']
-    return str(data[k])
+    if k in data.keys():
+        return json.dumps(data[k],indent = 4, sort_keys=True)
+    else:
+        return json.dumps({},indent = 4, sort_keys=True)
+    
+@app.route('/getcartquanfor', methods=['GET'])
+def getcartquanfor():
+    k=request.args['id']
+    item=request.args['item']
+    if k in data.keys():
+        return str(data[k][item])
+    else:
+        return str(-1)
+
 
 
 @app.route('/additem', methods=['POST'])
@@ -48,11 +54,17 @@ def add():
      v=request.args['quant']
      if uid in data.keys():
          cartdic = data[uid]
-         cartdic.update({k:int(v)}) 
+         if k not in cartdic.keys():
+             cartdic.update({k:int(v)})
+             flush_data()
+             return "true"
+         else:
+             return "false"
      else:
          data[uid]={k:int(v)}
-     flush_data()
-     return "true"
+         flush_data()
+         return "true"
+     
      
 @app.route('/updateitem', methods=['PUT'])
 def update():
@@ -102,5 +114,5 @@ def delete_cart():
 # t.start() 
 
 refresh_data()
-app.run(host= '0.0.0.0', port=4001)
+app.run(host= '0.0.0.0', port=4000)
     
