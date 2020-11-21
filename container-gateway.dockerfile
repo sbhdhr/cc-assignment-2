@@ -1,9 +1,9 @@
-FROM sbhdhr/ubuntu-python
+FROM sbhdhr/ubuntu-python2
 
 
-#COPY gateway.py /gateway.py
-#COPY requirements.txt /requirements.txt
+COPY gateway/gateway.py /gateway.py
+COPY requirements.txt /requirements.txt
 #
-#RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 #
-#CMD [ "python3", "./gateway.py" ]
+CMD [ "python", "./gateway.py" ]
