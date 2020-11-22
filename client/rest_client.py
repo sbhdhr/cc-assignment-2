@@ -8,24 +8,117 @@ import requests
 import json
 import sys
 
-url = "http://gateway1:5000/apiv1/"
+LOCAL_FLAG = False
+
+
+if LOCAL_FLAG:
+    gateway = ["http://localhost:6001","http://localhost:6002"]
+    
+    
+else:
+    gateway = ["http://gateway1:6000","http://gateway2:6000"]
+    
+
+part=1
+
+inv_list = []
 
 
 def get_all_inventory_items():
-    res = requests.get(url + "inventory/all")
-    text = res.text
-    # alert_list = json.loads(text)
-    # # print(type(alert_list))
-    # for i, v in enumerate(alert_list):
-    #     t = (i + 1, v["desc"])
-    #     alert_list[i] = t
-    return text
+    global part
+    global user
+    global inv_list
+    
+    inv_list = requests.get(gateway[part] + "/listallitems",params=({'id':user})).json()
+    
+    for i,item in enumerate(inv_list):
+        print(i+1,".",item[0],":",item[1])
 
 
-def send_alert(n):
-    res = requests.post(url + "alert/" + str(n))
-    return res.text
 
+def get_shop_cart():
+    global part
+    global user
+    
+    cart = requests.get(gateway[part] + "/getcartfor",params=({'id':user})).json()
+    
+    for i,item in enumerate(cart.keys()):
+        print(i+1,".",item,":",cart[item])
+        
+    return cart
+    
+
+def add_to_shop_cart():
+    global part
+    global user
+    global inv_list
+    
+    get_all_inventory_items()
+    print()
+    
+    i = int(input("Enter your choice: "))
+    
+    item = inv_list[i-1][0]
+    
+    
+    q = input("Enter quantity for {} : ".format(item))
+    
+    
+    
+    res = requests.post(gateway[part]+"/additem",params={'id':user,
+                                                            'item':item,
+                                                            'quant':q}).text
+    
+    if res=='true':
+        print("Added successfully !!")
+    else:
+        print(res)
+        
+        
+def upd_shop_cart():
+    global part
+    global user
+    
+    print("Your cart !!")
+    cart = get_shop_cart()
+    print()
+    
+    i = int(input("Enter your choice: "))
+    
+    item = list(cart.keys())[i-1]
+
+    q = input("Enter new quantity for {} : ".format(item))
+
+    res = requests.put(gateway[part]+"/updateitem",params={'id':user,
+                                                            'item':item,
+                                                            'quant':q}).text
+    
+    if res=='true':
+        print("Updated successfully !!")
+    else:
+        print(res)
+        
+        
+def delete_item():
+    global part
+    global user
+    
+    print("Your cart !!")
+    cart = get_shop_cart()
+    print()
+    
+    i = int(input("Enter your choice: "))
+    
+    item = list(cart.keys())[i-1]
+
+    res = requests.delete(gateway[part]+"/deleteitem",params={'id':user,
+                                                            'item':item}).text
+    
+    if res=='true':
+        print("Deleted successfully !!")
+    else:
+        print(res)
+    
 
 if __name__ == "__main__":
     
@@ -36,15 +129,38 @@ if __name__ == "__main__":
         print("1. List available items.")
         print("2. Show shopping cart.")
         print("3. Add item.")
-        print("4. Delete item.")
+        print("4. Update item.")
+        print("5. Delete item.")
         print("q. Exit")
       
         print()
+        #part=(part+1)%2
+        part=0
         try:
             c = input("Enter your choice: ")
             if c == '1':
                 print("Item list !!")
-                print(get_all_inventory_items())
+                get_all_inventory_items()
+                
+            
+            elif c == '2':
+                print("Your cart !!")
+                get_shop_cart()
+                
+            
+            elif c == '3':
+                print("Add item !!")
+                add_to_shop_cart()
+                
+            elif c == '4':
+                print("Update item !!")
+                upd_shop_cart()
+                
+            elif c == '5':
+                print("Delete item !!")
+                delete_item()
+                            
+            
             elif c == 'q' or c == 'Q':
                 break
             else:
