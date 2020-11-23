@@ -1,0 +1,54 @@
+{
+    "all- purpose": {
+        "quan": 30, 
+        "time": 1606128695.99297
+    }, 
+    "aluminum foil": {
+        "quan": 20, 
+        "time": 1606128695.992774
+    }, 
+    "butter": {
+        "quan": 15, 
+        "time": 1606128695.993011
+    }, 
+    "cereals": {
+        "quan": 30, 
+        "time": 1606128695.992483
+    }, 
+    "dinner rolls": {
+        "quan": 24, 
+        "time": 1606128695.9925
+    }, 
+    "hand soap": {
+        "quan": 17, 
+        "time": 1606128695.993129
+    }, 
+    "ice cream": {
+        "quan": 29, 
+        "time": 1606128695.99255
+    }, 
+    "laundry detergent": {
+        "quan": 29, 
+        "time": 1606128695.992511
+    }, 
+    "lunch meat": {
+        "quan": 16, 
+        "time": 1606128695.992581
+    }, 
+    "mixes": {
+        "quan": 16, 
+        "time": 1606128695.993174
+    }, 
+    "sandwich bags": {
+        "quan": 23, 
+        "time": 1606128695.992991
+    }, 
+    "soap": {
+        "quan": 24, 
+        "time": 1606128695.992867
+    }, 
+    "vegetables": {
+        "quan": 22, 
+        "time": 1606128695.992623
+    }
+}

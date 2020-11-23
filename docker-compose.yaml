@@ -3,7 +3,7 @@ services:
     invdata1:
         build:
             context: .
-            dockerfile: container-invdata.dockerfile
+            dockerfile: container-invdata-0.dockerfile
         container_name: invdata1
         restart: unless-stopped
         tty: true
@@ -14,7 +14,7 @@ services:
     invdata2:
         build:
             context: .
-            dockerfile: container-invdata.dockerfile
+            dockerfile: container-invdata-1.dockerfile
         container_name: invdata2
         restart: unless-stopped
         tty: true
@@ -75,6 +75,17 @@ services:
         tty: true
         ports:
             - 6001:6000
+        networks:
+            net1:
+    gateway2:
+        build:
+            context: .
+            dockerfile: container-gateway.dockerfile
+        container_name: gateway2
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 6002:6000
         networks:
             net1:
     userterm1:

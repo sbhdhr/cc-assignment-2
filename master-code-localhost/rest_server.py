@@ -29,7 +29,7 @@ if LOCAL_FLAG:
     
 else:
     invdata = ["http://invdata1:3000","http://invdata2:3000"]
-    cartdata = ["http://cartdata1:3000","http://cartdata2:3000"]
+    cartdata = ["http://cartdata1:4000","http://cartdata2:4000"]
     zk = KazooClient(hosts='zoo1:2181')
     zk.start()
     lock = zk.Lock("/lockpath/inv", "1234")
@@ -139,21 +139,21 @@ def updateitem():
      v=int(request.args['quant'])
      invpart=int(request.args['invpart'])
      cartpart=int(request.args['cartpart'])
-     try:
      
+     try:
         lock = zk.WriteLock("/lockpath/"+invlock[invpart], invlock[invpart])
         with lock:
             invres = requests.get(invdata[invpart]+"/getprodquan",params={'key':k}).text
             if v>=1 and v<=int(invres):
-                invres = requests.put(invdata[invpart]+"/upquan",params={'key':k,'val':v}).text
-                if invres=='true':
-                    lock2 = zk.WriteLock("/lockpath/"+cartlock[cartpart], cartlock[cartpart])
-                    with lock2:
+                lock2 = zk.WriteLock("/lockpath/"+cartlock[cartpart], cartlock[cartpart])
+                with lock2:
+                        cartres = requests.get(cartdata[cartpart]+"/getcartquanfor",params={'id':uid,'item':k}).text
+                        cartres = int(cartres)
+                        invres = requests.post(invdata[invpart]+"/incquan",params={'key':k,'val':cartres}).text
+                        invres = requests.post(invdata[invpart]+"/decquan",params={'key':k,'val':v}).text
                         res = requests.put(cartdata[cartpart]+"/updateitem",params={'id':uid,'item':k,'quant':v}).text
                         app.logger.info(res)
                         return 'true'
-                else:
-                    return 'false'
             else:
                 return 'false'
      except Exception as e:

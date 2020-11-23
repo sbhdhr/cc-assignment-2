@@ -34,8 +34,6 @@ def get_all_inventory_items():
     for i,item in enumerate(inv_list):
         print(i+1,".",item[0],":",item[1])
 
-
-
 def get_shop_cart():
     global part
     global user
@@ -118,11 +116,58 @@ def delete_item():
         print("Deleted successfully !!")
     else:
         print(res)
+        
+        
+def get_all_shop_cart():
+    global part
+    carts = requests.get(gateway[part] + "/getallcarts",params=({'id':'0','pass':'pass'})).json()
     
+    for i,item in enumerate(carts.keys()):
+        print("User: ",i+1)
+        print("----------")
+        for j,item2 in enumerate(carts[item].keys()):
+            print(j+1,".",item2,":",carts[item][item2])
+        print()
+            
+        
+    return carts
 
-if __name__ == "__main__":
+       
+        
+def admin_menu():
+    global part
     
-    user = int(input("Enter userId: "))
+    while True:
+        print("\n------- Distributed Shopping Cart :: ADMIN-------")
+        print("1. List available items.")
+        print("2. List all shopping cart.")
+        print("q. Exit")
+      
+        print()
+        part=(part+1)%2
+        #part=0
+        try:
+            c = input("Enter your choice: ")
+            if c == '1':
+                print("Item list !!")
+                get_all_inventory_items()
+                
+            
+            elif c == '2':
+                print("Cart List!!")
+                get_all_shop_cart()
+            
+            elif c == 'q' or c == 'Q':
+                break
+            else:
+                print("Invalid option!!")
+        except:
+            print("Error!", sys.exc_info()[0], " occured.")
+    
+        
+        
+def normal_menu():
+    global part
     
     while True:
         print("\n------- Distributed Shopping Cart -------")
@@ -134,8 +179,8 @@ if __name__ == "__main__":
         print("q. Exit")
       
         print()
-        #part=(part+1)%2
-        part=0
+        part=(part+1)%2
+        #part=0
         try:
             c = input("Enter your choice: ")
             if c == '1':
@@ -167,3 +212,19 @@ if __name__ == "__main__":
                 print("Invalid option!!")
         except:
             print("Error!", sys.exc_info()[0], " occured.")
+    
+
+if __name__ == "__main__":
+    
+    user = int(input("Enter userId: "))
+    
+    if user==0:
+        passwrd=input('Enter admin password:')
+        if passwrd=='pass':
+            admin_menu()
+        else:
+            print("Invalid Credentials, exiting...")
+    else:
+        normal_menu()
+    
+    

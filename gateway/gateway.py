@@ -4,6 +4,9 @@ from kazoo.client import KazooClient
 import socket 
 import requests
 import logging
+from crush import Crush
+import hashlib
+import json
 
 
 app = Flask(__name__)
@@ -31,23 +34,108 @@ else:
     zk.start()
     lock = zk.Lock("/lockpath/inv", "1234")
 
+part=1
+
+crushmap = """
+{
+   "trees":[
+      {
+         "type":"host",
+         "name":"InventoryDataReplicas",
+         "id":-2,
+         "children":[
+            {
+               "id":0,
+               "name":"invdata0",
+               "weight":65536
+            },
+            {
+               "id":1,
+               "name":"invdata1",
+               "weight":65536
+            }
+         ]
+      },
+      {
+         "type":"host",
+         "name":"CartDataReplicas",
+         "id":-3,
+         "children":[
+            {
+               "id":2,
+               "name":"cartdata0",
+               "weight":65536
+            },
+            {
+               "id":3,
+               "name":"cartdata1",
+               "weight":65536
+            }
+         ]
+      }
+   ],
+   "rules":{
+      "InvRule":[
+         [
+            "take",
+            "InventoryDataReplicas"
+         ],
+         [
+            "chooseleaf",
+            "firstn",
+            0,
+            "type",
+            "host"
+         ],
+         [
+            "emit"
+         ]
+      ],
+      "CartRule":[
+         [
+            "take",
+            "CartDataReplicas"
+         ],
+         [
+            "chooseleaf",
+            "firstn",
+            0,
+            "type",
+            "host"
+         ],
+         [
+            "emit"
+         ]
+      ]
+   }
+}
+"""
+
+crush = Crush()
+crush.parse(json.loads(crushmap))
+
 @app.route('/testlog', methods=['GET'])
 def testlog():
     app.logger.error("A warning")
     return ""
 
 
-part=1
-
 def find_part_for_user_cart(id):
     #crush code
-    map1 = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]
-    return map1[id]
+    itemToBeSent = int(hashlib.sha1(str(id)).hexdigest(), 16) % (10 ** 8)
+    arr = crush.map(rule="CartRule", value=itemToBeSent, replication_count=1)
+    val = arr[0][-1:]
+    return int(val)
+
 
 def find_part_for_inv(item):
     #crush code
-    
-    return 1
+    # I wasn't sure of the data type hence the extra LOC
+    itemToBeSent = int(hashlib.sha1(item).hexdigest(), 16) % (10 ** 8)
+    arr = crush.map(rule="InvRule", value=itemToBeSent, replication_count=1)
+    val = arr[0][-1:]
+    return int(val)
+
 
 @app.route('/getallcarts', methods=['GET'])
 def getall():
