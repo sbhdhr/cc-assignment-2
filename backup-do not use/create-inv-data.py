@@ -111,7 +111,7 @@ data0= {}
 data1={}
 
 for i in items:
-    item_dict={'quan':random.randint(15,30),'time':time.time()}
+    item_dict={'quan':random.randint(15,30),'price':round(random.uniform(50, 250),2),'time':time.time()}
     part = find_part_for_inv(i)
     print "{} -> {}".format(i,part)
     if(part==0):

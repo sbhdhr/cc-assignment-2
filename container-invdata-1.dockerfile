@@ -1,7 +1,7 @@
 FROM sbhdhr/ubuntu-python
 
 
-COPY inv0/* /
+COPY inv1/* /
 COPY requirements.txt /requirements.txt
 
 RUN pip3 install -r requirements.txt

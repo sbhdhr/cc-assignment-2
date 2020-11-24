@@ -15,14 +15,14 @@ data={}
 def refresh_data():
     global data
     
-    with open('inv-data-0.json','r') as file:
+    with open('inv-data-1.json','r') as file:
         data = json.load(file) 
         
         
 def flush_data():
     global data
     
-    with open('inv-data-0.json', 'w') as fp:
+    with open('inv-data-1.json', 'w') as fp:
         json.dump(data, fp,indent = 4, sort_keys=True)
         
         

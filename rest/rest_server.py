@@ -78,17 +78,34 @@ def getall():
 @app.route('/listallitems', methods=['GET'])
 def listallitems():
     try:
-        data = []
+        data = {}
         for i,url in enumerate(invdata):
             lock = zk.WriteLock("/lockpath/"+invlock[i], invlock[i])
             with lock:
+                # app.logger.info("GET data from {}".format(url))
+                # app.logger.info("---------------------------")
                 invdict = requests.get(url+"/getall").json()
-                tmp=[]
-                for k in invdict.keys():
-                    tmp.append((k,invdict[k]['quan']))
-                data = data+tmp
-                app.logger.info(str(data))
-            #data.update()
+                # app.logger.info(invdict)
+                # app.logger.info("---------------------------")
+                
+                # app.logger.info("Existing data ")
+                # app.logger.info("---------------------------")
+                # app.logger.info(data)
+                # app.logger.info("---------------------------")
+                # tmp=[]
+                # for k in invdict.keys():
+                #     tmp.append((k,invdict[k]['quan'],invdict[k]['price']))
+                data.update(invdict)
+                # app.logger.info("Updated data ")
+                # app.logger.info("---------------------------")
+                # app.logger.info(data)
+                # app.logger.info("---------------------------")
+                        
+        
+        app.logger.info("Final data ")
+        app.logger.info("---------------------------")
+        app.logger.info(data)
+        app.logger.info("---------------------------")
         return json.dumps(data,indent = 4, sort_keys=True)
     except Exception as e:
         return str(e)

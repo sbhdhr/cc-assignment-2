@@ -21,27 +21,38 @@ else:
 
 part=1
 
-inv_list = []
+inv_dict = {}
 
 
-def get_all_inventory_items():
+def get_all_inventory_items(verbose):
     global part
     global user
-    global inv_list
+    global inv_dict
     
-    inv_list = requests.get(gateway[part] + "/listallitems",params=({'id':user})).json()
+    inv_dict = requests.get(gateway[part] + "/listallitems",params=({'id':user})).json()
     
-    for i,item in enumerate(inv_list):
-        print(i+1,".",item[0],":",item[1])
+    if verbose:
+        for i,item in enumerate(inv_dict.keys()):
+            #print(item)
+            print(i+1,".",item,":",inv_dict[item]['quan'],": $",inv_dict[item]['price'],"/unit")
+
+ 
 
 def get_shop_cart():
     global part
     global user
+    global inv_dict
+    
+    total = 0
     
     cart = requests.get(gateway[part] + "/getcartfor",params=({'id':user})).json()
     
     for i,item in enumerate(cart.keys()):
-        print(i+1,".",item,":",cart[item])
+        price = float(inv_dict[item]['price'])*int(cart[item])
+        print(i+1,".",item,":",cart[item]," : $",str(round(price,2)))
+        total=total+price
+        
+    print("\n\nTotal cart value: $ ",str(round(total,2)))
         
     return cart
     
@@ -49,19 +60,16 @@ def get_shop_cart():
 def add_to_shop_cart():
     global part
     global user
-    global inv_list
+    global inv_dict
     
-    get_all_inventory_items()
+    get_all_inventory_items(True)
     print()
     
     i = int(input("Enter your choice: "))
     
-    item = inv_list[i-1][0]
-    
-    
+    item = list(inv_dict.keys())[i-1]
+        
     q = input("Enter quantity for {} : ".format(item))
-    
-    
     
     res = requests.post(gateway[part]+"/additem",params={'id':user,
                                                             'item':item,
@@ -137,6 +145,7 @@ def get_all_shop_cart():
 def admin_menu():
     global part
     
+    
     while True:
         print("\n------- Distributed Shopping Cart :: ADMIN-------")
         print("1. List available items.")
@@ -150,7 +159,7 @@ def admin_menu():
             c = input("Enter your choice: ")
             if c == '1':
                 print("Item list !!")
-                get_all_inventory_items()
+                get_all_inventory_items(True)
                 
             
             elif c == '2':
@@ -185,7 +194,7 @@ def normal_menu():
             c = input("Enter your choice: ")
             if c == '1':
                 print("Item list !!")
-                get_all_inventory_items()
+                get_all_inventory_items(True)
                 
             
             elif c == '2':
@@ -210,14 +219,15 @@ def normal_menu():
                 break
             else:
                 print("Invalid option!!")
-        except:
-            print("Error!", sys.exc_info()[0], " occured.")
+        except Exception as e:
+            print("Error!", str(e))
     
 
 if __name__ == "__main__":
     
-    user = int(input("Enter userId: "))
     
+    user = int(input("Enter userId: "))
+    get_all_inventory_items(False)
     if user==0:
         passwrd=input('Enter admin password:')
         if passwrd=='pass':
