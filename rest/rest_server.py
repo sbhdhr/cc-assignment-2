@@ -110,6 +110,36 @@ def listallitems():
     except Exception as e:
         return str(e)
 
+@app.route('/getcartcontaining', methods=['GET'])
+def getcartcontaining():
+    uid=request.args['id']
+    passwrd=request.args['pass']
+    item=request.args['item']
+    
+    
+    if uid=='0' and passwrd=='pass':
+        try:
+            data = []
+            for i,url in enumerate(cartdata):
+                #app.logger.info(url)
+                lock = zk.WriteLock("/lockpath/"+cartlock[i], cartlock[i])
+                with lock:
+                    # app.logger.info("GET data from {}".format(url))
+                    # app.logger.info("---------------------------")
+                    invlist = requests.get(url+"/getcartcontaining",params={'item':item}).json()
+                    app.logger.info(invlist)
+                    data.extend(invlist)
+            
+            
+            # app.logger.info("Final data ")
+            # app.logger.info("---------------------------")
+            #app.logger.info(data)
+            # app.logger.info("---------------------------")
+            return json.dumps(list(set(data)),indent = 4, sort_keys=True)
+        except Exception as e:
+            return str(e)
+    else:
+        return "false"
 
      
 @app.route('/getcartfor', methods=['GET'])

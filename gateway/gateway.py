@@ -163,7 +163,17 @@ def listallitems():
      except Exception as e:
        return str(e)
 
-
+@app.route('/getcartcontaining', methods=['GET'])
+def getcartcontaining():
+     uid=request.args['id']
+     passwrd=request.args['pass']
+     item=request.args['item']
+         
+     try:
+        res = requests.get(restsrv[part]+"/getcartcontaining",params={'id':uid,'pass':passwrd,'item':item}).text
+        return res
+     except Exception as e:
+       return str(e)
      
 @app.route('/getcartfor', methods=['GET'])
 def get_cart_for():

@@ -45,7 +45,19 @@ def getcartquanfor():
     else:
         return str(-1)
 
-
+@app.route('/getcartcontaining', methods=['GET'])
+def getcartcontaining():
+    item=request.args['item']
+    
+    users=[]
+    
+    for k in data.keys():
+        for j in data[k].keys():
+            if j==item:
+                users.append(k)
+                break;
+    
+    return json.dumps(users,indent = 4, sort_keys=True)
 
 @app.route('/additem', methods=['POST'])
 def add():

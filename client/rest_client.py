@@ -137,9 +137,24 @@ def get_all_shop_cart():
             print(j+1,".",item2,":",carts[item][item2])
         print()
             
-        
     return carts
 
+
+def get_shop_cart_for():
+    global part
+    global inv_dict
+    
+    get_all_inventory_items(True)
+    print()
+    
+    i = int(input("Enter your choice: "))
+    
+    item = list(inv_dict.keys())[i-1]
+        
+    
+    ids = requests.get(gateway[part] + "/getcartcontaining",params=({'id':'0','pass':'pass','item':item})).json()
+    
+    print(ids)
        
         
 def admin_menu():
@@ -150,6 +165,7 @@ def admin_menu():
         print("\n------- Distributed Shopping Cart :: ADMIN-------")
         print("1. List available items.")
         print("2. List all shopping cart.")
+        print("3. List all shopping cart for item.")
         print("q. Exit")
       
         print()
@@ -165,6 +181,10 @@ def admin_menu():
             elif c == '2':
                 print("Cart List!!")
                 get_all_shop_cart()
+                
+            elif c == '3':
+                print("Cart List!!")
+                get_shop_cart_for()
             
             elif c == 'q' or c == 'Q':
                 break
