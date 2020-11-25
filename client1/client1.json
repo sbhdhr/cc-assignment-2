@@ -1,0 +1,107 @@
+{
+    "4": {
+        "Operation": "ADD",
+        "UserID": 9,
+        "item": "sandwich bags"
+    },
+    "5": {
+        "Operation": "DELETE",
+        "UserID": 9,
+        "item": "sandwich bags"
+    },
+    "6": {
+        "Operation": "ADD",
+        "UserID": 9,
+        "item": "lunch meat"
+    },
+    "16": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "vegetables"
+    },
+    "17": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "vegetables"
+    },
+    "19": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "aluminum foil"
+    },
+    "20": {
+        "Operation": "DELETE",
+        "UserID": 1,
+        "item": "aluminum foil"
+    },
+    "23": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "dinner rolls"
+    },
+    "26": {
+        "Operation": "ADD",
+        "UserID": 6,
+        "item": "all- purpose"
+    },
+    "27": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "40": {
+        "Operation": "ADD",
+        "UserID": 6,
+        "item": "toilet paper"
+    },
+    "41": {
+        "Operation": "DELETE",
+        "UserID": 6,
+        "item": "toilet paper"
+    },
+    "50": {
+        "Operation": "ADD",
+        "UserID": 3,
+        "item": "mixes"
+    },
+    "51": {
+        "Operation": "DELETE",
+        "UserID": 3,
+        "item": "mixes"
+    },
+    "62": {
+        "Operation": "ADD",
+        "UserID": 5,
+        "item": "waffles"
+    },
+    "63": {
+        "Operation": "DELETE",
+        "UserID": 5,
+        "item": "waffles"
+    },
+    "64": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "individual meals"
+    },
+    "66": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "hand soap"
+    },
+    "67": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "vegetables"
+    },
+    "84": {
+        "Operation": "ADD",
+        "UserID": 8,
+        "item": "mixes"
+    },
+    "86": {
+        "Operation": "DELETE",
+        "UserID": 8,
+        "item": "mixes"
+    }
+}

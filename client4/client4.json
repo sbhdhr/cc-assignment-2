@@ -1,0 +1,102 @@
+{
+    "2": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "pork"
+    },
+    "3": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "pork"
+    },
+    "18": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "42": {
+        "Operation": "ADD",
+        "UserID": 3,
+        "item": "shampoo"
+    },
+    "43": {
+        "Operation": "DELETE",
+        "UserID": 3,
+        "item": "shampoo"
+    },
+    "44": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "hand soap"
+    },
+    "45": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "46": {
+        "Operation": "ADD",
+        "UserID": 4,
+        "item": "waffles"
+    },
+    "48": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "57": {
+        "Operation": "ADD",
+        "UserID": 6,
+        "item": "laundry detergent"
+    },
+    "58": {
+        "Operation": "DELETE",
+        "UserID": 6,
+        "item": "laundry detergent"
+    },
+    "65": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "73": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "cereals"
+    },
+    "74": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "cereals"
+    },
+    "75": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "shampoo"
+    },
+    "76": {
+        "Operation": "DELETE",
+        "UserID": 2,
+        "item": "shampoo"
+    },
+    "82": {
+        "Operation": "ADD",
+        "UserID": 6,
+        "item": "tortillas"
+    },
+    "83": {
+        "Operation": "DELETE",
+        "UserID": 6,
+        "item": "tortillas"
+    },
+    "85": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "89": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    }
+}

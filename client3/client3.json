@@ -1,0 +1,127 @@
+{
+    "7": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "all- purpose"
+    },
+    "8": {
+        "Operation": "DELETE",
+        "UserID": 2,
+        "item": "all- purpose"
+    },
+    "13": {
+        "Operation": "ADD",
+        "UserID": 10,
+        "item": "soda"
+    },
+    "14": {
+        "Operation": "DELETE",
+        "UserID": 10,
+        "item": "soda"
+    },
+    "21": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "all- purpose"
+    },
+    "22": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "all- purpose"
+    },
+    "24": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "30": {
+        "Operation": "ADD",
+        "UserID": 9,
+        "item": "soap"
+    },
+    "31": {
+        "Operation": "DELETE",
+        "UserID": 9,
+        "item": "soap"
+    },
+    "32": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "laundry detergent"
+    },
+    "34": {
+        "Operation": "DELETE",
+        "UserID": 2,
+        "item": "laundry detergent"
+    },
+    "35": {
+        "Operation": "ADD",
+        "UserID": 10,
+        "item": "ice cream"
+    },
+    "36": {
+        "Operation": "DELETE",
+        "UserID": 10,
+        "item": "ice cream"
+    },
+    "39": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "52": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "milk"
+    },
+    "54": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "milk"
+    },
+    "60": {
+        "Operation": "ADD",
+        "UserID": 2,
+        "item": "dishwashing liquid/detergent"
+    },
+    "61": {
+        "Operation": "DELETE",
+        "UserID": 2,
+        "item": "dishwashing liquid/detergent"
+    },
+    "71": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "yogurt"
+    },
+    "72": {
+        "Operation": "DELETE",
+        "UserID": 1,
+        "item": "yogurt"
+    },
+    "79": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "92": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "toilet paper"
+    },
+    "93": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "94": {
+        "Operation": "DELETE",
+        "UserID": 1,
+        "item": "toilet paper"
+    },
+    "97": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    }
+}

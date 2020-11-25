@@ -7,6 +7,8 @@ import time
 import requests
 import logging
 
+time.sleep(3)
+
 
 app = flask.Flask(__name__)
 

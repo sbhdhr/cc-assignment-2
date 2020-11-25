@@ -1,0 +1,77 @@
+{
+    "1": {
+        "Operation": "ADD",
+        "UserID": 4,
+        "item": "yogurt"
+    },
+    "10": {
+        "Operation": "ADD",
+        "UserID": 5,
+        "item": "flour"
+    },
+    "11": {
+        "Operation": "DELETE",
+        "UserID": 4,
+        "item": "yogurt"
+    },
+    "12": {
+        "Operation": "DELETE",
+        "UserID": 5,
+        "item": "flour"
+    },
+    "15": {
+        "Operation": "ADD",
+        "UserID": 8,
+        "item": "butter"
+    },
+    "28": {
+        "Operation": "ADD",
+        "UserID": 3,
+        "item": "mixes"
+    },
+    "29": {
+        "Operation": "DELETE",
+        "UserID": 3,
+        "item": "mixes"
+    },
+    "37": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "dinner rolls"
+    },
+    "38": {
+        "Operation": "DELETE",
+        "UserID": 1,
+        "item": "dinner rolls"
+    },
+    "49": {
+        "Operation": "ADD",
+        "UserID": 3,
+        "item": "cheeses"
+    },
+    "59": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "80": {
+        "Operation": "ADD",
+        "UserID": 9,
+        "item": "aluminum foil"
+    },
+    "81": {
+        "Operation": "DELETE",
+        "UserID": 9,
+        "item": "aluminum foil"
+    },
+    "88": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "pork"
+    },
+    "90": {
+        "Operation": "ADD",
+        "UserID": 8,
+        "item": "soap"
+    }
+}

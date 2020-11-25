@@ -7,7 +7,8 @@ import logging
 from crush import Crush
 import hashlib
 import json
-
+import time
+time.sleep(3)
 
 app = Flask(__name__)
 

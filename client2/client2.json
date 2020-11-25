@@ -1,0 +1,82 @@
+{
+    "9": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "25": {
+        "Operation": "ADD",
+        "UserID": 9,
+        "item": "shampoo"
+    },
+    "33": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "47": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "vegetables"
+    },
+    "53": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "55": {
+        "Operation": "ADD",
+        "UserID": 1,
+        "item": "sandwich bags"
+    },
+    "56": {
+        "Operation": "DELETE",
+        "UserID": 1,
+        "item": "sandwich bags"
+    },
+    "68": {
+        "Operation": "LISTALL",
+        "UserID": 0,
+        "item": null
+    },
+    "69": {
+        "Operation": "ADD",
+        "UserID": 5,
+        "item": "individual meals"
+    },
+    "70": {
+        "Operation": "DELETE",
+        "UserID": 5,
+        "item": "individual meals"
+    },
+    "77": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "vegetables"
+    },
+    "78": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "vegetables"
+    },
+    "87": {
+        "Operation": "ADD",
+        "UserID": 4,
+        "item": "soda"
+    },
+    "91": {
+        "Operation": "ADD",
+        "UserID": 5,
+        "item": "ice cream"
+    },
+    "95": {
+        "Operation": "ADD",
+        "UserID": 7,
+        "item": "dinner rolls"
+    },
+    "96": {
+        "Operation": "DELETE",
+        "UserID": 7,
+        "item": "dinner rolls"
+    }
+}

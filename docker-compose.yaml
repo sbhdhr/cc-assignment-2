@@ -44,6 +44,19 @@ services:
             - 4002:4000
         networks:
             net1:
+            
+    zoo1:
+        image: zookeeper
+        restart: unless-stopped
+        hostname: zoo1
+        ports:
+            - 2181:2181
+        networks:
+            net1:
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
+            
     restsrv1:
         build:
             context: .
@@ -91,7 +104,7 @@ services:
     userterm1:
         build:
             context: .
-            dockerfile: container-rest_client.dockerfile
+            dockerfile: container-rest_client-0.dockerfile
         container_name: client1
         restart: unless-stopped
         tty: true
@@ -100,23 +113,42 @@ services:
     userterm2:
         build:
             context: .
-            dockerfile: container-rest_client.dockerfile
+            dockerfile: container-rest_client-1.dockerfile
         container_name: client2
         restart: unless-stopped
         tty: true
         networks:
             net1:
-    zoo1:
-        image: zookeeper
+            
+    userterm3:
+        build:
+            context: .
+            dockerfile: container-rest_client-2.dockerfile
+        container_name: client3
         restart: unless-stopped
-        hostname: zoo1
-        ports:
-            - 2181:2181
+        tty: true
         networks:
             net1:
-        environment:
-            ZOO_MY_ID: 1
-            ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 
+            
+    userterm4:
+        build:
+            context: .
+            dockerfile: container-rest_client-3.dockerfile
+        container_name: client4
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+    userterm5:
+        build:
+            context: .
+            dockerfile: container-rest_client-4.dockerfile
+        container_name: client5
+        restart: unless-stopped
+        tty: true
+        networks:
+            net1:
+     
 networks:
     net1:
         driver: bridge
